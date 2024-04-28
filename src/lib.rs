@@ -105,15 +105,4 @@ pub fn sha1_hash(message: Vec<bool>) -> BigUint {
 
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_one(){
-        sha1_hash(vec![
-            false, true, true, false, false, false, false, true, false, 
-            true, true, false, false, false, true, false, false, true,
-            true, false, false, false, true, true
-        ]);
-    }
-}
+mod test;
