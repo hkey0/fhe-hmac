@@ -25,13 +25,12 @@ fn u64_to_bool_vec(mut num: u64) -> Vec<bool> {
     bits
 }
 
-pub fn sha1_hash(message: Vec<bool>) {
+pub fn sha1_hash(message: Vec<bool>) -> BigUint {
     let mut msg = message.clone();
     let mut w: Vec<u32> = Vec::with_capacity(80);
     msg.push(true);
 
-    let mut new_pad: Vec<bool> = u64_to_bool_vec(message.len() as u64);
-    println!("{:?}", new_pad);
+    let new_pad: Vec<bool> = u64_to_bool_vec(message.len() as u64);
     
     while msg.len() % 512 != 448 {
         msg.push(false);
@@ -41,13 +40,11 @@ pub fn sha1_hash(message: Vec<bool>) {
         msg.push(new_pad[i])
     }
 
-    let mut iter = msg.chunks(32);
+    let iter = msg.chunks(32);
     for chunk in iter {
-        println!("{:?}", chunk);
         w.push(vec_to_u32(chunk));
     }
     
-    println!("{:?}", w);
     for i  in 16..=79 {
         let val = (w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16]).rotate_left(1) ;
         w.push(val);
@@ -92,7 +89,6 @@ pub fn sha1_hash(message: Vec<bool>) {
         b = a;
         a = temp;
 
-        println!("T{i}:  {:X}", a);
     };
     
     let h0 = BigUint::from(0x67452301 + a); 
@@ -103,9 +99,8 @@ pub fn sha1_hash(message: Vec<bool>) {
 
     
     let hh = (h0 << 128) | (h1 << 96) | (h2 << 64) | (h3 << 32_u8) | h4;
-    println!("{:X}", hh);
 
-
+    hh
 }
 
 
@@ -120,6 +115,5 @@ mod tests {
             true, true, false, false, false, true, false, false, true,
             true, false, false, false, true, true
         ]);
-        assert_eq!(1, 1);
     }
 }
