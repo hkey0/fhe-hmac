@@ -9,7 +9,6 @@ pub fn vec_to_u32(bits: &[bool]) -> u32 {
             result |= 1 << (31 - index);
         }
     }
-
     result
 }
 
@@ -20,7 +19,6 @@ fn u64_to_bool_vec(mut num: u64) -> Vec<bool> {
         bits.push(num & 1 == 1);
         num >>= 1;  
     }
-
     bits.reverse();  
     bits
 }
@@ -80,15 +78,12 @@ pub fn sha1_hash(message: Vec<bool>) -> BigUint {
             _ => {} 
             
         };
-
-
         let temp = (a.rotate_left(5)) + f + e + k + w[i];
         e = d;
         d = c;
         c = b.rotate_left(30);
         b = a;
         a = temp;
-
     };
     
     let h0 = BigUint::from(0x67452301 + a); 
@@ -97,12 +92,11 @@ pub fn sha1_hash(message: Vec<bool>) -> BigUint {
     let h3 = BigUint::from(0x10325476 + d);  
     let h4 = BigUint::from(0xC3D2E1F0 + e); 
 
-    
     let hh = (h0 << 128) | (h1 << 96) | (h2 << 64) | (h3 << 32_u8) | h4;
-
     hh
 }
 
 
 #[cfg(test)]
 mod test;
+
