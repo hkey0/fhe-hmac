@@ -34,9 +34,11 @@ pub fn sha1_hash(message: Vec<bool>) -> BigUint {
         msg.push(false);
     }
 
-    for i in 0..63 {
-        msg.push(new_pad[i])
+    for i in new_pad {
+        msg.push(i);
     }
+
+    println!("sss {:?}  len is {}", msg, msg.len());
 
     let iter = msg.chunks(32);
     for chunk in iter {

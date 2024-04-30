@@ -3,8 +3,17 @@ name = "fhe-hmac"
 version = "0.1.0"
 edition = "2021"
 
+
+[lib]
+name = "sha1"
+path = "src/sha1.rs"
+
+[[bin]]
+name = "fhet"
+path = "src/bin.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 num-bigint = "0.4.4"
-tfhe = { version = "0.6.1", features = [ "boolean", "shortint", "integer", "x86_64-unix" ] }
+tfhe = { version = "0.6.1", features = ["boolean", "shortint", "integer", "x86_64-unix" ] }
