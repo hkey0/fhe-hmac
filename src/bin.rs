@@ -14,8 +14,6 @@ fn u64_to_bool_vec(mut num: u64) -> Vec<bool> {
 
 fn main() {
     let (ck, sk) = gen_keys();
-
-
     let data: Vec<bool> = vec![
         false, true, true, false, false, false, false, true, false, 
         true, true, false, false, false, true, false, false, true,
@@ -50,7 +48,5 @@ fn main() {
     for d in en_data {
         dc_data.push(ck.decrypt(&d));
     }
-
-
     println!("{:?}", dc_data);
 }

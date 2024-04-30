@@ -38,8 +38,6 @@ pub fn sha1_hash(message: Vec<bool>) -> BigUint {
         msg.push(i);
     }
 
-    println!("sss {:?}  len is {}", msg, msg.len());
-
     let iter = msg.chunks(32);
     for chunk in iter {
         w.push(vec_to_u32(chunk));
@@ -95,6 +93,7 @@ pub fn sha1_hash(message: Vec<bool>) -> BigUint {
     let h4 = BigUint::from(0xC3D2E1F0 + e); 
 
     let hh = (h0 << 128) | (h1 << 96) | (h2 << 64) | (h3 << 32_u8) | h4;
+
     hh
 }
 
